@@ -13,7 +13,12 @@ exports.resolvers = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 exports.resolvers = {
-    Query: {},
+    Query: {
+        users: (parent, args, context) => __awaiter(void 0, void 0, void 0, function* () {
+            const users = yield prisma.user.findMany();
+            return users;
+        }),
+    },
     Mutation: {
         signup: (parent, args, context) => __awaiter(void 0, void 0, void 0, function* () {
             return yield prisma.user.create({

@@ -4,6 +4,7 @@ exports.typeDefs = void 0;
 exports.typeDefs = `#graphql
   type Query {
         me: User
+        users: [User]
         posts: [Post]
 }
 
