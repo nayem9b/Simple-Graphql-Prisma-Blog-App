@@ -13,8 +13,31 @@ exports.typeDefs = `#graphql
       name: String!,
       email: String!,
       password: String!
-      ): User
+      bio: String
+      ): AuthPayload,
+
+    signin(
+      email: String!,
+      password: String!
+    ): AuthPayload  
+
+    addpost(
+      title: String!
+      content: String!
+    ): PostPayload
 }
+
+
+ type AuthPayload {
+       token: String
+       userError: String
+ }
+
+
+  type PostPayload {
+    userError: String
+    post: Post
+  }
 
   type Post {
         id: ID!

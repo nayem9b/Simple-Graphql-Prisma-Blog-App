@@ -41,7 +41,7 @@ export const Mutation = {
         },
       });
     }
-    const token = await jwtHelper(
+    const token = await jwtHelper.generateToken(
       { userId: newUser.id },
       config.jwt.secret as string
     );
@@ -73,7 +73,7 @@ export const Mutation = {
         token: null,
       };
     }
-    const token = await jwtHelper(
+    const token = await jwtHelper.generateToken(
       { userId: user.id },
       config.jwt.secret as string
     );
@@ -81,5 +81,8 @@ export const Mutation = {
       userError: null,
       token,
     };
+  },
+  addpost: async (parent: any, args: any, { prisma }: any) => {
+    console.log("data", args);
   },
 };

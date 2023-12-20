@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "compile": "tsc -w",
     "dev": "nodemon --watch './**/*.ts' --exec ts-node src/index.ts"
   },
   "dependencies": {
