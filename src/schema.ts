@@ -10,12 +10,18 @@ export const typeDefs = `#graphql
       name: String!,
       email: String!,
       password: String!
-      ): UserArgs
+      ): AuthPayload,
+
+    signin(
+      email: String!,
+      password: String!
+    ): AuthPayload  
 }
 
 
- type UserArgs {
-       token: String 
+ type AuthPayload {
+       token: String
+       userError: String
  }
 
 
