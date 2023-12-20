@@ -1,7 +1,10 @@
-import jwt from "jsonwebtoken";
-require("dotenv").config();
-export const jwtHelper = async (payload: { userId: number }) => {
-  const token = jwt.sign({ userId: payload }, process.env.JWT_SIGN, {
+import jwt, { Secret } from "jsonwebtoken";
+
+export const jwtHelper = async (
+  payload: { userId: number },
+  secret: Secret
+) => {
+  const token = jwt.sign({ userId: payload }, secret, {
     expiresIn: "1d",
   });
   return token;
