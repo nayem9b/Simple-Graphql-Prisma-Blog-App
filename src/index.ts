@@ -9,6 +9,9 @@ import { jwtHelper } from "./utils/jwtHelper";
 const prisma = new PrismaClient();
 interface Context {
   prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>;
+  userInfo: {
+    userId: number | null;
+  } | null;
 }
 const main = async () => {
   const server = new ApolloServer({
@@ -24,6 +27,7 @@ const main = async () => {
       );
       return {
         prisma,
+        userInfo,
       };
     },
   });

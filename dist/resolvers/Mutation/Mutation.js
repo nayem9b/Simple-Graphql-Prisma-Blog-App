@@ -79,7 +79,29 @@ exports.Mutation = {
             token,
         };
     }),
-    addpost: (parent, args, { prisma }) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log("data", args);
+    addpost: (parent, args, { prisma, userInfo }) => __awaiter(void 0, void 0, void 0, function* () {
+        if (!userInfo) {
+            return {
+                userError: "Unauthorized",
+                post: null,
+            };
+        }
+        if (!args.title || !args.content) {
+            return {
+                userError: "Title and content must be provided",
+                post: null,
+            };
+        }
+        const newPost = yield prisma.post.create({
+            data: {
+                title: args.title,
+                content: args.content,
+                authorId: userInfo.userId,
+            },
+        });
+        return {
+            userError: null,
+            post: newPost,
+        };
     }),
 };

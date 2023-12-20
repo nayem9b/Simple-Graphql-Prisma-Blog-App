@@ -27,6 +27,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
             const userInfo = yield jwtHelper_1.jwtHelper.getUserInfoFromToken(req.headers.authorization);
             return {
                 prisma,
+                userInfo,
             };
         }),
     });
