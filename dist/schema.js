@@ -21,9 +21,11 @@ exports.typeDefs = `#graphql
       password: String!
     ): AuthPayload  
 
-    addpost(
-      title: String!
-      content: String!
+    addpost(post: PostInput): PostPayload
+
+    updatePost(
+      postId: ID!
+      post: PostInput
     ): PostPayload
 }
 
@@ -38,6 +40,11 @@ exports.typeDefs = `#graphql
     userError: String
     post: Post
   }
+
+input PostInput{
+  title: String
+  content: String
+}
 
   type Post {
         id: ID!
